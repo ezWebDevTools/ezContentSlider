@@ -1,5 +1,5 @@
-ezContentSlider
-===============
+ezContentSlider - 0.5.9
+=======================
 
 A full-featured slider / fader with a carousel for thumbnails (or smaller), as well as a full-screen mode for when you want maximum visual impact.
 

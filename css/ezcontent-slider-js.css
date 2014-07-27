@@ -15,9 +15,9 @@
 .ezcs-status-fullscreen .ezcs-main-slides li {position:relative; top:0; left:0; bottom:0; right:0; height:100%}
 
 /* .ezcs-status-fullscreen .ezcs-main-slides img.ezcs-display-full {min-width:100%;min-height:100%; z-index:350} */
-.ezcs-status-fullscreen .ezcs-main-slides img.ezcs-display-full {z-index:350;position:relative}
-.ezcs-status-fullscreen .ezcs-main-slides img.ezcs-height-100-percent{height:100%}
-.ezcs-status-fullscreen .ezcs-main-slides img.ezcs-width-100-percent {width:100%}
+.ezcs-status-fullscreen .ezcs-main-slides img.ezcs-display-full {z-index:350; height:100%; width:100%; position:relative}
+.ezcs-status-fullscreen .ezcs-main-slides img.ezcs-height-100-percent{height:100%; width:auto}
+.ezcs-status-fullscreen .ezcs-main-slides img.ezcs-width-100-percent {width:100%; height:auto}
 
 /* -- Main slides -- */
 .ezcs-content-slider {max-width:100%; position: relative}

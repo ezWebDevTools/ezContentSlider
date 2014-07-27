@@ -1,6 +1,6 @@
 /**
  * jQuery ezContentSlider Plugin
- * Version: 0.5.8 (beta)
+ * Version: 0.5.9 (beta)
  * URL: http://ezContentSlider.com 
  * Description: Lite-weight (.min is ~14k) full-featured (and responsive) content slider (or fade). Works on images (see demo), as well as non-images (with minor adjustments).
  * Requires: 1.9.x - Designed and developed using 1.9.x. (Not sure if it works with any earlier jQ releases but you're welcome to try.)
@@ -14,39 +14,43 @@
 /**
 -- CHANGE LOG --
 
---0.5.8 - Fri 11 July 2014
--- FIXED: Mopped up a dingleberry with full-screen and Chrome (PC).
--- FIXED: Carousel was getting mucked up by too clicks too often. Not any more :)
+-- 0.5.9 - Fri 25 July 2014
+---- FIXED: Full-screen image sizing calculation issue
+---- TODO: Leaning on lazy-load changed the POV of how things work. Revisit and look for efficiency improvements
 
-- 0.5.7 - Thur 10 July 2014
--- ADDED: "Lazy load" for full screen images. When in full-screen, slide will show normal size image stretched to full while the larger image loads, else (i.e., onerror) we continue to use the normal image. 
+-- 0.5.8 - Fri 11 July 2014
+---- FIXED: Mopped up a dingleberry with full-screen and Chrome (PC).
+---- FIXED: Carousel was getting mucked up by too clicks too often. Not any more :)
 
-- 0.5.6 - Wed 9 July 2014
--- FIXED: Make sure the selector is present on the current page. Don't try to setup the slider if there's no selector to set it up on. #Duh
+-- 0.5.7 - Thur 10 July 2014
+---- ADDED: "Lazy load" for full screen images. When in full-screen, slide will show normal size image stretched to full while the larger image loads, else (i.e., onerror) we continue to use the normal image. 
 
-- 0.5.5 - Tue 9 Oct 2012
--- FIXED: One of the calls to function ezcsPlayAuto() passed an extra parm which (needless to say) mucked things up. 
+-- 0.5.6 - Wed 9 July 2014
+---- FIXED: Make sure the selector is present on the current page. Don't try to setup the slider if there's no selector to set it up on. #Duh
 
-- 0.5.4 - Tue 18 Sept 2012
--- FIXED: ezcsIsBusy - main next / prev clicks are ignored until transition fadeIn (or slide over) is completed. 
--- CHANGED: Did a load of variable renaming (read: shortened them) to try to make the overall file size smaller.
+-- 0.5.5 - Tue 9 Oct 2012
+---- FIXED: One of the calls to function ezcsPlayAuto() passed an extra parm which (needless to say) mucked things up. 
 
-- 0.5.3 - Mon 17 Sept 2012
--- ADDED: Escape key closes fullscreen
--- ADDED: Main image next / prev keeps carousel in sync
+-- 0.5.4 - Tue 18 Sept 2012
+---- FIXED: ezcsIsBusy - main next / prev clicks are ignored until transition fadeIn (or slide over) is completed. 
+---- CHANGED: Did a load of variable renaming (read: shortened them) to try to make the overall file size smaller.
 
-- 0.5.2 - Thur 13 Sept 2012
--- ADDED: var oEzcs - Single object makes it easier to pass a collection of vars that were previously "global"
--- CHANGED: Adding oEzcs resulted in clean up of orphaned code and vars
--- ADDED: Support for multiple ezContentSliders per page
--- ADDED Option/default:: carouselPageClickStopsPlayAuto - true / false
--- ADDED Option/default:: mainNextPrevClickStopsPlayAuto - true / false
--- ADDED Option/default: displayFullStyle : 'fill' / 'fit' else any other value defaults to 'fill'
--- ADDED Option/default: displayFullFillCenterImg : true / false will resize full image from upper left corner (i.e., no centering)
--- ADDED: a couple other settings, but nothing that effects functionality (per se)
+-- 0.5.3 - Mon 17 Sept 2012
+---- ADDED: Escape key closes fullscreen
+---- ADDED: Main image next / prev keeps carousel in sync
+
+-- 0.5.2 - Thur 13 Sept 2012
+---- ADDED: var oEzcs - Single object makes it easier to pass a collection of vars that were previously "global"
+---- CHANGED: Adding oEzcs resulted in clean up of orphaned code and vars
+---- ADDED: Support for multiple ezContentSliders per page
+---- ADDED Option/default:: carouselPageClickStopsPlayAuto - true / false
+---- ADDED Option/default:: mainNextPrevClickStopsPlayAuto - true / false
+---- ADDED Option/default: displayFullStyle : 'fill' / 'fit' else any other value defaults to 'fill'
+---- ADDED Option/default: displayFullFillCenterImg : true / false will resize full image from upper left corner (i.e., no centering)
+---- ADDED: a couple other settings, but nothing that effects functionality (per se)
  
-- 0.5.1 - Fri 10 Aug 2012
--- ADDED: Support of social media share button (show / hide)
+-- 0.5.1 - Fri 10 Aug 2012
+---- ADDED: Support of social media share button (show / hide)
  *
  */
  
@@ -55,7 +59,7 @@
 (function($) {
 	// Main plugin function
 	$.fn.ezContentSlider = function(options) { 
-		// oEzcs are a collection of vars that are used across a number of the plugin's functions. They're packaged within a single object to make them easier to pass, maintain, etc. 
+		// oEzcs are a collection of vars that are used across the plugin.  
 		var $this = $(this),
 			oEzcs = {
 				opts : '',
@@ -91,11 +95,11 @@
 		
 		// overwrite plugin defaults with user options
 		oEzcs.opts = $.extend({}, $.fn.ezContentSlider.defaults, options);
-		
+		// the lazy load needs this
 		oEzcs.opts.objImage = new Image();
 		
 		// a couple quick opts validations
-		// in general to keep code-bloat to a minimum the plugin presumes the options values will be valid.if not, things could break so be careful
+		// in general to keep code-bloat to a minimum the plugin presumes the options values will be valid. if not, things could break so please be careful
 		if ( oEzcs.opts.carouselGroupPageOverlap < 0 ){
 			oEzcs.opts.carouselGroupPageOverlap = 1;
 		}
@@ -121,17 +125,11 @@
 			// start with what screen mode? reg or fullscreen?
 			oEzcs.cDisplayRegClass = oEzcs.cMainSlidesList.find(oEzcs.opts.displayRegClass);
 			oEzcs.cDisplayFullClass = oEzcs.cMainSlidesList.find(oEzcs.opts.displayFullClass);
-			// let's plan ahead a bit...stash the image width, height and aspect ratio now.  
-			oEzcs.cDisplayFullClass.filter('img').each(function(){
-			  $(this).attr('data-'+oEzcs.opts.mainFullImgWidthDataAttr, $(this).width());
-			  $(this).attr('data-'+oEzcs.opts.mainFullImgHeightDataAttr, $(this).height());
-			  $(this).attr('data-'+oEzcs.opts.mainFullImgRatioDataAttr, $(this).width() / $(this).height());
-			});
 			
 			// if the large imgs are to be lazy loaded then there's a bit more setup to do
+			// let's swap the reg img into the full spot and stash the full in a data attr for later
 			if (oEzcs.opts.mainFullImgLazyLoad != false){
 			  oEzcs.cDisplayFullClass.filter('img').each(function(index){
-			  
 				imgRegSrc = oEzcs.cDisplayRegClass.filter('img').eq(index).attr('src');
 				// take the "large: src and stash it to a data-attribute
 			    $(this).attr('data-'+oEzcs.opts.mainFullImgSrcDataAttr, $(this).attr('src'));
@@ -201,15 +199,17 @@
 			  oEzcs = ezcsPlayAuto(oEzcs)
 			}	
 		} 
+		
 		// if the window resizes then we have some things to do
 		$(window).resize(function() {
-			oEzcs = ezcsMainResize($this,oEzcs);
+		  oEzcs = ezcsMainResize($this, oEzcs);
 			// if the window size changes so does the carousel
 			if ( oEzcs.opts.carouselUse ) {
 			  oEzcs = ezcsCalculateCarouselVars(oEzcs);
 			}
-			// redraw the main based on the new dimensions
-			oEzcs = ezcsShowMain(oEzcs.nowIndex,oEzcs);
+			// reposition the current image based on the resize()
+			imgLrg = oEzcs.cMainSlidesList.eq(oEzcs.nowIndex).find('img' + oEzcs.opts.displayFullClass);
+			oEzcs = ezcsFullPosition(imgLrg, oEzcs);
 		});
 		return $this;	
  
@@ -229,70 +229,69 @@
 			// for sliding, set the width of the UL
 			oEzcs.cMainSlidesUL.css('width',(oEzcs.nowDisplayWidth * oEzcs.cMainSlidesList.length))
 		} else {
-		// else: fullscreen display
-			//oEzcs.nowDisplayWidth = $(window).width(); //window.innerWidth
-		oEzcs.nowDisplayWidth = window.innerWidth; //window.innerWidth
-
-		//	oEzcs.nowDisplayHeight = $(window).height();
-			oEzcs.nowDisplayHeight = window.innerHeight;
-			
-			//alert($(window).width() + ' - ' + window.innerWidth + ' --- ' + $(window).height() + ' - ' + window.innerHeight);
-			
-			oEzcs.cMainSlidesList.css('width', oEzcs.nowDisplayWidth).css('height', oEzcs.nowDisplayHeight);
-			oEzcs.cMainSlidesUL.css('width', (oEzcs.nowDisplayWidth * oEzcs.cMainSlidesList.length)+'px' );
-			if (oEzcs.opts.displayFullStyle === 'fit') {
-				oEzcs.cDisplayFullClass.filter('img').each(function(idx,val){
-					if ((oEzcs.nowDisplayWidth / oEzcs.nowDisplayHeight) > ($(this).data(oEzcs.opts.mainFullImgRatioDataAttr))) {
-						// window aspect ratio is "wider" than img aspect ratio -> resize on the height and then center the width
-						$(this).addClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
-						$(this).removeClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
-						marginLeft = (oEzcs.nowDisplayWidth - ($(this).data(oEzcs.opts.mainFullImgWidthDataAttr) * (oEzcs.nowDisplayHeight/ $(this).data(oEzcs.opts.mainFullImgHeightDataAttr)))) / 2;
-						$(this).css({'margin-top': 'auto','margin-left':marginLeft});
-					} else {
-						// window aspect ratio is "taller" than img aspect ratio -> resize on the width and then center the height 
-						$(this).addClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
-						$(this).removeClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
-						marginTop = (oEzcs.nowDisplayHeight - ($(this).data(oEzcs.opts.mainFullImgHeightDataAttr) * (oEzcs.nowDisplayWidth/ $(this).data(oEzcs.opts.mainFullImgWidthDataAttr)))) / 2;
-						$(this).css({'margin-top': marginTop,'margin-left':'auto'});	
-					}
-				});				
-			} else { // fill
-				if ( oEzcs.opts.displayFullFillCenterImg ) {
-					oEzcs.cDisplayFullClass.filter('img').each(function(idx,val){
-						// what is the display's aspect ratio vs the images acpect ratio?
-						// this will determine if we resize to fill using the height or the width
-						if ((oEzcs.nowDisplayWidth / oEzcs.nowDisplayHeight) > ($(this).data(oEzcs.opts.mainFullImgRatioDataAttr))) {
-							// window aspect ratio is "wider" than img aspect ratio -> resize on the width and then center the vert 
-							$(this).addClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
-							$(this).removeClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
-							marginTop = (oEzcs.nowDisplayHeight - ($(this).data(oEzcs.opts.mainFullImgHeightDataAttr) * (oEzcs.nowDisplayWidth/ $(this).data(oEzcs.opts.mainFullImgWidthDataAttr)))) / 2;
-							$(this).css({'margin-top': marginTop,'margin-left':'auto'});
-						} else {
-							// window aspect ratio is "taller" than img aspect ratio -> resize on the height and then center the horizontal 
-							$(this).addClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
-							$(this).removeClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
-							marginLeft = (oEzcs.nowDisplayWidth - ($(this).data(oEzcs.opts.mainFullImgWidthDataAttr) * (oEzcs.nowDisplayHeight/ $(this).data(oEzcs.opts.mainFullImgHeightDataAttr)))) / 2;
-							$(this).css({'margin-top': 'auto','margin-left':marginLeft});	
-						}
-					});
-				} else {
-					oEzcs.cDisplayFullClass.filter('img').each(function(idx,val){
-						// what is the display's aspect ratio vs the images acpect ratio?
-						// this will determine if we resize to fill using the height or the width
-						if ((oEzcs.nowDisplayWidth / oEzcs.nowDisplayHeight) > ($(this).data(oEzcs.opts.mainFullImgRatioDataAttr))) {
-							// window aspect ratio is "wider" than img aspect ratio -> resize on the width and then center the vert 
-							$(this).addClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
-							$(this).removeClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
-						} else {
-							// window aspect ratio is "taller" than img aspect ratio -> resize on the height and then center the horizontal 
-							$(this).addClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
-							$(this).removeClass(oEzcs.opts.displayFullImgWidth100PercentClassName);	
-						}
-					});				
-				}
-			}
+		  // else: fullscreen display
+		  oEzcs.nowDisplayWidth = window.innerWidth; //window.innerWidth
+		  oEzcs.nowDisplayHeight = window.innerHeight;
+		  
+		  oEzcs.cMainSlidesList.css('width', oEzcs.nowDisplayWidth).css('height', oEzcs.nowDisplayHeight);
+		  oEzcs.cMainSlidesUL.css('width', (oEzcs.nowDisplayWidth * oEzcs.cMainSlidesList.length)+'px' );
 		}
 	return oEzcs;
+	}
+	
+	
+	function ezcsFullPosition(thisImg,oEzcs){
+	
+	  if (oEzcs.opts.displayFullStyle === 'fit') {
+	
+		if ((oEzcs.nowDisplayWidth / oEzcs.nowDisplayHeight) > (thisImg.data(oEzcs.opts.mainFullImgRatioDataAttr))) {
+		  // window aspect ratio is "wider" than img aspect ratio -> resize on the height and then center the width
+		  thisImg.addClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
+		  thisImg.removeClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
+		  marginLeft = (oEzcs.nowDisplayWidth - (thisImg.data(oEzcs.opts.mainFullImgWidthDataAttr) * (oEzcs.nowDisplayHeight/ thisImg.data(oEzcs.opts.mainFullImgHeightDataAttr)))) / 2;
+		  thisImg.css({'margin-top': 'auto','margin-left':marginLeft});
+		} else {
+		  // window aspect ratio is "taller" than img aspect ratio -> resize on the width and then center the height 
+		  thisImg.addClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
+		  thisImg.removeClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
+		  marginTop = (oEzcs.nowDisplayHeight - (thisImg.data(oEzcs.opts.mainFullImgHeightDataAttr) * (oEzcs.nowDisplayWidth/ thisImg.data(oEzcs.opts.mainFullImgWidthDataAttr)))) / 2;
+		  thisImg.css({'margin-top': marginTop,'margin-left':'auto'});	
+		}
+	    
+	  } else { // fill
+	    if ( oEzcs.opts.displayFullFillCenterImg ) {
+		  // what is the display's aspect ratio vs the images acpect ratio?
+		  // this will determine if we resize to fill using the height or the width
+						if ((oEzcs.nowDisplayWidth / oEzcs.nowDisplayHeight) > (thisImg.data(oEzcs.opts.mainFullImgRatioDataAttr))) {
+							// window aspect ratio is "wider" than img aspect ratio -> resize on the width and then center the vert 
+							thisImg.addClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
+							thisImg.removeClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
+							marginTop = (oEzcs.nowDisplayHeight - (thisImg.data(oEzcs.opts.mainFullImgHeightDataAttr) * (oEzcs.nowDisplayWidth/ thisImg.data(oEzcs.opts.mainFullImgWidthDataAttr)))) / 2;
+							thisImg.css({'margin-top': marginTop,'margin-left':'auto'});
+						} else {
+							// window aspect ratio is "taller" than img aspect ratio -> resize on the height and then center the horizontal 
+							thisImg.addClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
+							thisImg.removeClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
+							marginLeft = (oEzcs.nowDisplayWidth - (thisImg.data(oEzcs.opts.mainFullImgWidthDataAttr) * (oEzcs.nowDisplayHeight/ thisImg.data(oEzcs.opts.mainFullImgHeightDataAttr)))) / 2;
+							thisImg.css({'margin-top': 'auto','margin-left':marginLeft});	
+						}
+					
+				} else {
+						// what is the display's aspect ratio vs the images acpect ratio?
+						// this will determine if we resize to fill using the height or the width
+						if ((oEzcs.nowDisplayWidth / oEzcs.nowDisplayHeight) > (thisImg.data(oEzcs.opts.mainFullImgRatioDataAttr))) {
+							// window aspect ratio is "wider" than img aspect ratio -> resize on the width and then center the vert 
+							thisImg.addClass(oEzcs.opts.displayFullImgWidth100PercentClassName);
+							thisImg.removeClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
+						} else {
+							// window aspect ratio is "taller" than img aspect ratio -> resize on the height and then center the horizontal 
+							thisImg.addClass(oEzcs.opts.displayFullImgHeight100PercentClassName);
+							thisImg.removeClass(oEzcs.opts.displayFullImgWidth100PercentClassName);	
+						}
+						
+				}
+			}	
+	  return oEzcs;
 	}
 	
 	function ezcsCalculateCarouselVars(oEzcs) {
@@ -595,7 +594,7 @@
 	  // get the src data attr
 	  dataSrc = imgLrg.data(oEzcs.opts.mainFullImgSrcDataAttr);
 	  
-	  if (typeof dataSrc != 'undefined'){
+	  if (typeof dataSrc != 'undefined' && imgLrg.data(oEzcs.opts.mainFullImgReadyDataAttr) != true){
 	    // original src - we're gonna have to presume this image exists
 	    origSrc = imgLrg.attr('src');
 	    //objImage = new Image();
@@ -605,7 +604,15 @@
 		};
 		// one the new large src load then...
 	    oEzcs.opts.objImage.onload = function(){
-		  imgLrg.attr('src', dataSrc);			  
+		  imgLrg.attr('src', dataSrc);	
+		  // we only want to losd the large image once
+          imgLrg.attr('data-' + oEzcs.opts.mainFullImgReadyDataAttr, true);
+		  // now set up some of the data attributes
+		  imgLrg.attr('data-'+oEzcs.opts.mainFullImgWidthDataAttr, oEzcs.opts.objImage.width);
+		  imgLrg.attr('data-'+oEzcs.opts.mainFullImgHeightDataAttr, oEzcs.opts.objImage.height);
+		  imgLrg.attr('data-'+oEzcs.opts.mainFullImgRatioDataAttr, oEzcs.opts.objImage.width / oEzcs.opts.objImage.height); 
+		  // image in full effect, now position it. 
+		  oEzcs = ezcsFullPosition(imgLrg, oEzcs);
 		};
 	    oEzcs.opts.objImage.src = dataSrc;
 	  }
@@ -619,12 +626,25 @@
 		}
 		oEzcs.ezcsIsBusy = true;
 		oEzcs.loaderSelector.show();
-		
 		// if we're in large mode the
-		if ( oEzcs.opts.displayIsReg != true && oEzcs.opts.mainFullImgLazyLoad != false ){
-		  ezscLoadLarge(displayThisIndex, oEzcs );
+		if ( oEzcs.opts.displayIsReg != true){ 
+		  if ( oEzcs.opts.mainFullImgLazyLoad != false ){
+		    ezscLoadLarge(displayThisIndex, oEzcs );
+		  } else {
+		    imgLrg = oEzcs.cMainSlidesList.eq(displayThisIndex).find('img' + oEzcs.opts.displayFullClass);
+			// if we have't done so yet, "preprocess" the large image
+			if (imgLrg.data(oEzcs.opts.mainFullImgReadyDataAttr) != true){
+			  imgLrg.attr('data-' + oEzcs.opts.mainFullImgReadyDataAttr, true);
+			  oEzcs.opts.objImage.src = imgLrg.attr('src');
+			  imgLrg.attr('data-'+oEzcs.opts.mainFullImgWidthDataAttr, oEzcs.opts.objImage.width);
+			  imgLrg.attr('data-'+oEzcs.opts.mainFullImgHeightDataAttr, oEzcs.opts.objImage.height);
+			  imgLrg.attr('data-'+oEzcs.opts.mainFullImgRatioDataAttr, oEzcs.opts.objImage.width / oEzcs.opts.objImage.height); 
+			}
+			// ok. now position the large image
+			oEzcs = ezcsFullPosition(imgLrg, oEzcs);
+		  } 
 		}
-		
+				
 		if (oEzcs.opts.carouselUse) { 
 			// updated the selected images of the carousel 
 			oEzcs.cCarouselPagesList.eq(oEzcs.nowIndex).removeClass(oEzcs.opts.carouselPageSelectedClassName);
@@ -675,6 +695,7 @@ $.fn.ezContentSlider.defaults = {
 	mainFullImgWidthDataAttr : 'ezscfullimgwidth', // note: data- will be prefixed to this string to create a data attr
 	mainFullImgHeightDataAttr : 'ezscfullimgheight', // note: data- will be prefixed to this string to create a data attr
 	mainFullImgSrcDataAttr : 'ezscfullimgsrc', //'ezscfullimgsrc', // note: data- will be prefixed to this string to create a data attr
+	mainFullImgReadyDataAttr : 'ezscfullimgready', // has the full image been lay loaded / used? if so, then we don't need to data- the dimensions and such again
 	mainFullImgLazyLoad : true,  // true = use the normal image, stretch it to large, then "lazy load" the large image, and once that's loaded replace the normal with the large
 	slidesMainSelector : '.ezcs-main-slides',
 	slidesWrapperClass : '.ezcs-the-slides',
