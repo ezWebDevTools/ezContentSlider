@@ -1,0 +1,298 @@
+/* Formatted so it's ez to read. Please feel free to .min it yourself. */
+
+/* Coloours: http://clrs.cc/ */
+
+body {
+	font-size:16px;
+	line-height:1.5
+}
+
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Days One', sans-serif 
+}
+
+.jumbotron h1, .jumbotron h2, .jumbotron h3, .row h2 {font-weight:400}
+
+.dropdown-menu {font-size:15px}
+
+a,
+a:hover{
+	color: #000
+}
+
+.ezpl-back-to-top{
+	font-size:2em;
+	opacity:.25
+}
+.ezpl-back-to-top:hover{
+	opacity:1
+}
+.ezpl-margin-top-30{
+	margin-top:30px
+}
+
+.header,
+.footer {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.header{
+	z-index:1000;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	height:60px;
+	background-color:#fff;
+	width:100%;
+	border-bottom: 2px solid #e5e5e5
+}
+
+.well{
+	border:1px solid #F5F5F5;
+	box-shadow: none
+}
+					
+.well h4 {
+	margin-top:0
+	font-weight:700
+}
+
+#menu2{
+	left:auto;
+	right:0
+}
+
+.nav > li > a {
+	padding: 7px 13px
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+	background-color:#E5E5E5;
+	background-color:#000;
+	color:#F5F5F5
+}
+
+.dropdown a,
+.dropdown a:hover{
+	color:#000
+}
+
+.nav a:hover .caret, .nav a:focus .caret {
+	border-bottom-color: #F5F5F5;
+	border-top-color: #F5F5F5;
+}
+
+.nav .caret {
+	border-bottom-color: #000;
+	border-top-color: #000;
+}
+
+.nav > li > a.start-here{
+	color:#fff;
+	background-color:#000
+}
+
+.nav > li > a.start-here:hover{
+	color:#F5F5F5	
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+	color:#000;
+	background-color:#F5F5F5;
+}
+
+.nav > li.open > a.start-here{
+	color:#000;
+	background-color:#F5F5F5;
+}
+
+.nav > li.open > a.start-here .caret{
+	border-bottom-color: #000;
+	border-top-color: #000
+}
+
+.nav > li > a.start-here .caret{
+	border-bottom-color: #FFF; 
+	border-top-color: #FFF
+}
+
+.start-here a{
+	color:#fff
+}
+
+.dropdown-menu{
+	border: none
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus{
+	color: #fff;
+	background-color:#000
+}
+
+.dropdown-menu > li > a.hover-pointer{
+	cursor:default
+}
+
+
+.jumbotron{
+	background-color:#2eb5e6;
+	color:#000;
+	padding-top: 15px;
+	padding-bottom: 0;
+	margin: 60px 0 0 0;
+	text-align: center;
+	border-top: 13px solid #f5f5f5;
+	border-bottom: 13px solid #f5f5f5;
+}
+
+.jumbotron .lead{
+	margin: 20px 0 0
+}
+
+.ezpl-jumbotron-below{
+	padding: 20px 0;
+	background-color: #fff;
+	border-top: 2px solid #e5e5e5;
+	border-bottom: 2px solid #e5e5e5;
+}
+
+
+.btn-xl{
+	font-size:21px;
+	padding:14px 24px;
+}
+
+.btn-black{
+	background-color:#000;
+	border-color:E5E5E5;
+	color:#FFF
+}
+
+.btn-black:hover{
+	background-color:#000;
+	border-color: #000;
+	color:#F5F5F5
+}
+
+.item img{
+	width:100%;
+	height:30px
+}
+
+.carousel{
+	margin-top:15px
+}
+
+.carousel-inner > .item > img{
+	height:75px;
+}
+
+.carousel-caption {
+	color:#000;
+	bottom: 1px;
+	left: 1%;
+    right: 1%;
+	text-shadow: none;
+	font-size:18px;
+	font-style: italic
+}
+
+.ezpl-row{
+	padding: 20px 5px 25px;
+	border-bottom: 2px solid #E5E5E5
+}
+
+.ezpl-footer{
+	border-bottom: none
+}
+
+.ezpl-row-button{
+	padding: 30px 5px 30px;
+}
+
+.ezpl-footer-button{
+	padding: 30px 5px 30px;
+	border-top: 2px solid #E5E5E5
+}
+
+/* Custom page footer */
+.footer {
+	border-top: 2px solid #E5E5E5;
+	padding-top: 0;
+	color: #777;
+}
+
+.li-line-space-1em li {padding-bottom:1.0em}
+
+#max-row-msg-wrap{height:30px; padding-left:4%}
+
+#ez-logo{
+	margin-top:5px
+}
+
+#ez-logo-wrap{
+	position: relative;
+	width:100%;
+	max-width:75px;
+	margin: 0 auto;
+	opacity:.25
+}
+
+#ez-logo-wrap:hover{
+	opacity:1
+}
+
+#ez-logo-background-circle{
+	position: absolute; 
+	z-index:500;
+	top:0;
+	right:0;
+	bottom:0;
+	left:1%;
+	width:99%;
+	border-radius:50%;
+	background-color:#2eb5e6;
+}
+
+#ez-logo-img {
+	position: relative; 
+	z-index:600;
+}
+
+#ez-logo-img  img{
+	width:100%;
+	padding-bottom:.5%;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+	.container {
+		max-width: 730px;
+	}
+    .jumbotron .container {
+      max-width: 730px
+	}
+}
+
+.container-narrow > hr {
+	margin: 30px 0;
+}
+
+
+pre code{
+	white-space:pre-line; 
+	font-size:1.3em
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+	.header,
+	.footer {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+}

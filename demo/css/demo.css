@@ -1,0 +1,5 @@
+/* -- Demo (not needed for production -- */
+
+body{font-family: 'PT Sans Narrow', Arial, sans-serif;font-size:14px;position:relative}
+.demo-content{max-width:50%;margin:20px auto}
+h1 {color: #000;font-size: 25px;line-height: 40px;padding: 20px;text-align: center;text-shadow: 1px 1px 1px #f1f1f1}

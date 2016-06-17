@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- [TODO] - change fave icon ref: http://favicon-generator.org/ -->
+	<link rel="shortcut icon" href="ico/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="ico/favicon.ico" type="image/x-icon">
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- [TODO] - change meta -->
+	<title>ezContentSlider - A jQuery Plugin</title>
+	<meta name="description" content="A full-featured slider / fader with a carousel for thumbnails (or smaller), as well as a full-screen mode for when you want maximum visual impact.">
+	<meta name="author" content="Mark F. Simchock (@ChiefAlchemist1) for AlchemyUnited.com">
+	
+	<!-- [TODO] - change Open Graph meta -->
+	<meta property="og:title" content="ezContentSlider - A jQuery Plugin" />
+	<meta property="og:description" content="A full-featured slider / fader with a carousel for thumbnails (or smaller), as well as a full-screen mode for when you want maximum visual impact." />
+	<meta property="og:type" content="website" />
+	
+	<!-- [TODO] - add Google Analytics URL Builder tags to the og:url -->
+	<meta property="og:url" content="http://autd.co/I4KHE" />
+	
+	<!-- http://username.github.io/repository -->
+	<!-- http://ezwebdevtools.github.io/ezcontentslider
+	
+	<!-- [TODO] - add an Open Graph image -->
+	<meta property="og:image" content="http://ezwebdevtools.github.io/ezcontentslider/img/ezcontent-slider-jquery-plugin.jpg" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta property="og:image:width" content="768" />
+	<meta property="og:image:height" content="543" />
+
+	<!-- [TODO] - add an Open Graph video -->
+	<!--
+	<meta property="og:video" content="http://example.com/movie.swf" />
+	<meta property="og:video:secure_url" content="https://secure.example.com/movie.swf" />
+	<meta property="og:video:type" content="application/x-shockwave-flash" />
+	<meta property="og:video:width" content="400" />
+	<meta property="og:video:height" content="300" />
+	-->
+
+	<!-- [TODO] - add Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ezWebDevTools">
+    <meta name="twitter:creator" content="@ChiefAlchemist1">
+    <meta name="twitter:title" content="ezContentSlider - A jQuery Plugin">
+    <meta name="twitter:description" content="A full-featured slider / fader with a carousel for thumbnails (or smaller), as well as a full-screen mode for when you want maximum visual impact.">
+    <meta name="twitter:image:src" content="http://ezwebdevtools.github.io/ezcontentslider/img/ezcontent-slider-jquery-plugin.jpg">
+
+	<!-- Bootstrap core CSS: Latest compiled and minified CSS -->
+	<link href="css/reset.css?v=1.0" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">	
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+
+	<!-- [TODO] - Headline / accent hosted web font.  -->
+	<!-- [TODO] - Also be sure to update ~line 8 in the CSS to use your font  -->
+	<link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
+	
+	<!-- Custom styles for this template -->
+	<link href="css/ezcontent-slider.css?v=320.0" rel="stylesheet">
+	<!-- This is the CSS that is specific to the plugin -->
+	<link href="css/ezcontent-slider-js.css?v=059.0" rel="stylesheet">
+	
+	<!-- css for jquery ui 
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet"> 
+	-->
+	
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="top">
+	<div data-spy="affix" class="header">
+		<div class="container">
+			<div class="col-lg-5">
+				<ul class="nav nav-pills pull-left">
+					<li class="dropdown">
+						<a id="drop4" role="button" data-toggle="dropdown" href="#" class="start-here">START HERE <b class="caret"></b></a>
+						<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+						
+							<!-- [TODO] - Add / remove Start Here menu options / anchors -->
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#overview"><i class="fa fa-flag fa-fw"></i> Overview</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#demo"><i class="fa fa-eye fa-fw"></i> Demo</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#how-to"><i class="fa fa-gears fa-fw"></i> How To</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#change-log"><i class="fa fa-code-fork fa-fw"></i> Change Log</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#faq"><i class="fa fa-question-circle fa-fw"></i> FAQ</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#license"><i class="fa fa-gavel fa-fw"></i> License</a></li>
+							
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="divider"></li>
+								
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#credits"><i class="fa fa-thumbs-o-up fa-fw"></i> Credits</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#testimonials"><i class="fa fa-heart fa-fw"></i> Testimonials</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#share"><i class="fa fa-share-alt fa-fw"></i> Share</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#additional-info"><i class="fa fa-info-circle fa-fw"></i> Additional Info</a></li>
+							
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="divider"></li>
+						
+							<!-- [TODO] - Add / Remove Product's off-site links -->
+
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/g67Ml" target="_blank"><i class="fa fa-external-link-square fa-fw"></i> ezWebDevTools.com</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/YrhrF" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> Facebook</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/TiTtd" target="_blank"><i class="fa fa-github-square fa-fw"></i> GitHub</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/5fDZJ" target="_blank"><i class="fa fa-twitter-square fa-fw"></i> Twitter</a></li>
+							
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="divider"></li>
+						
+							<!-- [TODO] - Add / Remove Product's off-site links -->
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#top"><i class="fa fa-arrow-circle-up fa-fw"></i> Back to Top</a></li>
+											
+					  </ul>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="col-lg-7">
+				<ul class="nav nav-pills pull-right">
+					<li class="dropdown">
+					
+						<!-- [TODO] - Developer's Details -->	
+						<a id="drop4" role="button" data-toggle="dropdown" href="#">MFS <b class="caret"></b></a>
+						<ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+					  
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="hover-pointer"><strong>Coded &amp; Curated By:</strong><br>Mark F. Simchock</a></li>
+						
+							<li role="presentation" class="divider"></li>
+							<li role="presentation" class="divider"></li>
+						
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/8Z4mD" target="_blank"><i class="fa fa-external-link-square fa-fw"></i> ChiefAlchemist.com</a></li>
+						
+							<li role="presentation" class="divider"></li>
+							<li role="presentation" class="divider"></li>
+							
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/zcco8" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> Facebook</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/3CQpL" target="_blank"><i class="fa fa-twitter-square fa-fw"></i> Twitter</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/38Yj3" target="_blank"><i class="fa fa-github-square fa-fw"></i> GitHub (MFS)</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/NU3BH" target="_blank"><i class="fa fa-pinterest fa-fw"></i> Pinterest</a></li>
+					<!--	
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://TODO.com" target="_blank"><i class="fa fa-google-plus-square fa-fw"></i> Google+</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://TODO.com" target="_blank"><i class="fa fa-instagram fa-fw"></i> Instagram</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://TODO.com" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i> LinkedIn</a></li>
+					
+							<li role="presentation" class="divider"></li>
+							<li role="presentation" class="divider"></li>
+							
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="http://TODO.com"><i class="fa fa-envelope fa-fw"></i> Email Me</a></li>
+					-->			
+					  </ul>
+					</li>
+					
+					<li class="dropdown">
+					
+						<!-- [TODO] - Developer's Employer's Details -->
+						<a id="drop5" role="button" data-toggle="dropdown" href="#">AU <b class="caret"></b></a>
+						<ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="drop5">
+						
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="hover-pointer"><strong>Where I Work:</strong><br>Alchemy United</a></li>
+						
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="divider"></li>
+							
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/E5kiJ" target="_blank"><i class="fa fa-external-link-square fa-fw"></i> AlchemyUnited.com</a></li>
+						
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="divider"></li>
+						
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/gUA3s" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> Facebook</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/cW6xr" target="_blank"><i class="fa fa-twitter-square fa-fw"></i> Twitter</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/M9S67" target="_blank"><i class="fa fa-github-square fa-fw"></i> GitHub</a></li>
+							
+							<!--
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://TODO.com" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i> LinkedIn</a></li>
+							-->
+
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="divider"></li>
+						
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="http://autd.co/P34vU" target="_blank"><i class="fa fa-envelope fa-fw"></i> AU Mailing List</a></li>
+
+					  </ul>
+					</li>
+					
+				</ul>
+			</div>
+		
+			<div class="clearfix text-muted"></div>
+
+	
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="jumbotron">
+			<div class="container">	
+		  
+			  
+				<h1>ezContentSlider</h1>
+				<h3><i class="fa fa-star-o fa-fw"></i> A jQuery plugin <i class="fa fa-star-o fa-fw"></i></h3>
+				<p class="lead">
+				  A full-featured slider / fader with a carousel for thumbnails (or smaller), as well as a full-screen mode for when you want maximum visual impact.
+				</p>
+		
+			
+				<!-- [TODO] - Add / remove "slides" from the carousel -->
+				<div id="carousel-testimonials" class="carousel slide">
+					<div class="carousel-inner">
+						<div class="item active">
+							<!-- IMPORTANT: The small "faux" image (one-by-one.png) allows you to use the Bootstrap carousel as a simple text carousel. -->
+							<img src="img/one-by-one.png" alt="When tweeting please use #ezProductLaunch. ">
+							<div class="carousel-caption">
+								<p><i class="fa fa-quote-left fa-fw"></i> 
+									When tweeting please use #ezContentSlider.
+								<i class="fa fa-quote-right fa-fw"></i></p>
+							</div>
+						</div>
+						<div class="item">
+							<img src="img/one-by-one.png" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+							<div class="carousel-caption">
+							<p><i class="fa fa-quote-left fa-fw"></i> 
+								Yes, if you're doing RWD it'll work. 
+							<i class="fa fa-quote-right fa-fw"></i></p>
+
+							</div>
+						</div>
+					</div>	
+				</div>		
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="row ezpl-jumbotron-below">	
+		<div class="container">	
+		
+			<div class="col-lg-3">
+				<!-- Some other call to action? -->
+			</div>
+				
+			<div class="col-lg-6 text-center">
+					<!-- [TODO] - link to GitHub -->
+					<a class="btn btn-xl btn-black" target="_blank" href="http://autd.co/e3oZP">
+						<i class="fa fa-github fa-fw"></i> Get ezContentSlider on GitHub
+					</a>
+			</div>
+				
+			<div class="col-lg-3">
+				<!-- Some other call to action? -->
+			</div>
+					
+			<div class="clearfix"></div>
+			<div id="overview"></div>
+		</div>
+	</div>
+	
+	
+	<div class="container">	
+	
+		<!-- ================== #OVERVIEW ================== -->	
+
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-flag fa-fw"></i> Overview</h2>
+				
+				<p class="lead">
+				  You're correct, the world probably doesn't need another jQuery slider. With that said, the truth is, ezContentSlider does 
+				  have a solid feature set and is worthy of your attention. It's also "designer &amp; developer friendly" and eager to serve you. 
+				</p>
+				
+				<p></p>
+				
+				<ul>
+				  <li>
+				    It can slide. Or it can fade.
+				  </li>
+				  <li>
+				    You can use the carousel. Or not use the carousel.
+				  </li>
+				  <li>
+				    Plus, when you want to go big, it even has toggle to full-screen capability. There's also an option to "lazy load" the larger full-screen images.
+				  </li>
+				</ul>
+
+			<p></p>
+				
+				<!-- ================== What it doens't do ================== -->
+				<div class="col-lg-10 col-lg-offset-1 ezpl-margin-top-30">
+					<div class="well well-lg">
+						<h4><i class="fa fa-smile-o fa-fw"></i> Key Benefits &amp; Features:</h4>
+						
+							<ul>
+								<li>
+								  <p><strong>Extrememly Social</strong>
+								  <br>Share to Social can be defined at the image (not just page) level.</p>
+								</li>
+								<li>
+								  <p><strong>Flexible and Robust</strong>
+								  <br>Nearly everything is an option you can define / change.</p>
+								</li>
+								<li>
+								  <p><strong>You're in Control</strong>
+								  <br>The markup is yours, the plugin just manipulates it for you. This approach also cuts down on the overhead associated with 
+								  mucking with the DOM and such.</p>
+								</li>
+								<li>
+								  <p><strong>Clean &amp Easy To Follow</strong>
+								  <br>If you feel you must, just fork it and make it your own. You're welcome.</p>
+								</li>
+							</ul>
+				
+						
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+				<p></p>
+				
+				<!-- ================== What it doens't do ================== -->
+			
+				<div class="col-lg-10 col-lg-offset-1 ezpl-margin-top-30">
+					<div class="well well-lg">
+						<h4><i class="fa fa-warning"></i> What it doesn't do:</h4>
+					  <ul>
+						<li>
+						  <p><strong>Force Majeure</strong> - ezContentSlider is a fine piece of well crafted machinery but it won't save you 
+						  from the zombie apocolypse, vampire attacks, Godzilla, etc. It's good. But it's not that good.
+						  </p>
+						  <p>
+						  Sorry to disappoint you.
+						  </p>
+						</li>
+					  </ul>
+					</div>
+				</div>
+				
+				
+				<div class="clearfix"></div>
+				
+				<div id="demo"></div>			
+			</div> 	
+		</div>
+	
+	<!-- ================== #DEMO ================== -->	
+	
+	<div class="row ezpl-row">
+		<div class="col-lg-12">
+			<h2><i class="fa fa-eye"></i> Demo</h2>
+			<p class="lead">Images provided by FunPixPlus (<a href="http://autd.co/KwbQq" target="_blank" title="FunPixPlus on Pinterest">FPP on Pinterest <i class="fa fa-external-link-square"></i></a>).</p>
+			
+			<p class="lead">Note: The links for the Share icons are not set up. They're only there so it's easy for you to imagine the possibilities.</p>
+		
+		    
+			<!----------------------------------- DEMO 1 - START ----------------------------------->
+			<p>&bull; Demo 1 - Fades.</p>
+			
+			<!-- all the magic is going to happen within this next div id= -->
+		<div id="ez-content-slider-1" class="ezcs-content-slider">
+			<div class="ezcs-main-wrapper">
+				<span class="ezcs-main-prev" title="Previous Image"></span>
+				<span class="ezcs-main-next" title="Next Image"></span>
+				<div class="ezcs-main-slides">
+					<ul>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">1 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">1 - The caption for the full screen can be different.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-1.jpg" title="Reg - One"  alt="Reg - One" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-1-lrg.jpg" title="Large - One"  alt="Large - One" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">2 - Captions can contain a links.</span>
+							<span class="ezcs-caption-full ezcs-display-full">2 - This is the caption for full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-2.jpg" title="Reg - Two"  alt="Reg - Two" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-2-lrg.jpg" title="Large - Two"  alt="Large - Two" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">3 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">3 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-3.jpg" title="Reg - Three" alt="Reg - Three"  />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-3-lrg.jpg" title="Large - Three" alt="Large - Three"  />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">4 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">4 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-4.jpg"  alt="Reg - Four" title="Reg - Four" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-4-lrg.jpg" alt="Large - Four" title="Large - Four" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">5 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">5 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-5.jpg"  alt="Reg - Five" title="Reg - Five" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-5-lrg.jpg" alt="Large - Five" title="Large - Five" />
+							</a>
+						</li>	
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">6 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">6 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-6.jpg"  alt="Reg - Six" title="Reg - Six" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-6-lrg.jpg"  alt="Full - Six" title="Full - Six" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">7 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">7 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-7.jpg"  alt="Reg - Seven" title="Reg - Seven" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-7-lrg.jpg"  alt="Full - Seven" title="Full - Seven" />
+							</a>
+						</li>
+					</ul>
+			</div>
+		<div class="ezcs-loader"></div>
+		<div class="ezcs-clear"></div>
+		<div class="ezcs-controls-wrapper">
+			<span id="ezcs-control-switch-show" class="ezcs-control-switch" title="Hide controls"></span>
+			<span id="ezcs-control-switch-hide" class="ezcs-control-switch" title="Show controls" style="display:none"></span>
+			<div class="ezcs-controls-switch-wrapper"> <!-- these elements will toggle as a group when the switch control is clicked -->
+			<span id="ezcs-control-thumbs-show" class="ezcs-control-thumbs" title="Hide thumbnail carousel"></span>
+			<span id="ezcs-control-thumbs-hide" class=" ezcs-control-thumbs" title="Show thumbnail carousel"  style="display:none"></span>
+			<span id="ezcs-control-caption-show" class="ezcs-control-caption" title="Hide captions"></span>
+			<span id="ezcs-control-caption-hide" class="ezcs-control-caption" title="Show captions" style="display:none"></span>
+			<span id="ezcs-control-share-show" class="ezcs-control-share" title="Hide share options"></span>
+			<span id="ezcs-control-share-hide" class="ezcs-control-share" title="Show share options" style="display:none"></span>
+			<span id="ezcs-control-display-full" class="ezcs-control-display" title="Return to Normal" style="display:none"></span>
+			<span id="ezcs-control-display-small" class="ezcs-control-display" title="Expand to fullscreen"></span>
+			<span id="ezcs-control-play-play" class="ezcs-control-play" title="Pause" style="display:none"></span>
+			<span id="ezcs-control-play-pause" class="ezcs-control-play" title="Play"></span>	
+			</div>	
+		</div>
+
+	</div> <!-- close the main div -->
+
+	<!-- Carousel  -->
+			<div class="ezcs-carousel-wrapper">
+				<span class="ezcs-carousel-group-prev" title="Previous page"></span>
+				<span class="ezcs-carousel-group-next" title="Next page"></span>
+				<div class="ezcs-carousel-pages-wrapper">
+					<ul class="ezcs-paging-list">
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-1-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 1 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-2-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 2 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-3-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 3 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-4-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 4 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-5-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 5 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-6-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 6 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-7-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 7 thumb" /></li>
+					</ul>
+				</div>
+			</div><!-- End: Carousel -->
+		</div> <!-- End: ez-content-slider-1-->
+		
+			<!----------------------------------- DEMO 1 - END ----------------------------------->
+			
+			<!----------------------------------- DEMO 2 - START ----------------------------------->
+			
+	    <p>&bull; Demo 2 - Slider.</p>
+		<!-- all the magic is going to happen within this next div id= -->
+		<div id="ez-content-slider-2" class="ezcs-content-slider">
+			<div class="ezcs-main-wrapper">
+				<span class="ezcs-main-prev" title="Previous Image"></span>
+				<span class="ezcs-main-next" title="Next Image"></span>
+				<div class="ezcs-main-slides">
+					<ul>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">1 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">1 - The caption for the full screen can be different.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-1.jpg" title="Reg - One"  alt="Reg - One" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-1-lrg.jpg" title="Large - One"  alt="Large - One" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">2 - Captions can contain a links.</span>
+							<span class="ezcs-caption-full ezcs-display-full">2 - This is the caption for full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-2.jpg" title="Reg - Two"  alt="Reg - Two" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-2-lrg.jpg" title="Large - Two"  alt="Large - Two" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">3 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">3 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-3.jpg" title="Reg - Three" alt="Reg - Three"  />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-3-lrg.jpg" title="Large - Three" alt="Large - Three"  />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">4 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">4 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-4.jpg"  alt="Reg - Four" title="Reg - Four" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-4-lrg.jpg" alt="Large - Four" title="Large - Four" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">5 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">5 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-5.jpg"  alt="Reg - Five" title="Reg - Five" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-5-lrg.jpg" alt="Large - Five" title="Large - Five" />
+							</a>
+						</li>	
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">6 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">6 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-6.jpg"  alt="Reg - Six" title="Reg - Six" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-6-lrg.jpg"  alt="Full - Six" title="Full - Six" />
+							</a>
+						</li>
+						<li>
+							<span class="ezcs-caption-reg ezcs-display-reg">7 - This is the caption for the regular sized image.</span>
+							<span class="ezcs-caption-full ezcs-display-full">7 - This is the caption for the full screen.</span>
+							<span class="ezcs-share-reg ezcs-display-reg"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<span class="ezcs-share-full ezcs-display-full"><i class="fa fa-pinterest fa-fw"></i> <i class="fa fa-facebook-square fa-fw"></i> <i class="fa fa-twitter-square fa-fw"></i></span>
+							<a href="#" class="ezcs-the-slides">
+								<img class="ezcs-display-reg" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-7.jpg"  alt="Reg - Seven" title="Reg - Seven" />
+								<img class="ezcs-display-full" src="slides/ezwebdevtools-ezcontent-slider-funpixplus-7-lrg.jpg"  alt="Full - Seven" title="Full - Seven" />
+							</a>
+						</li>
+					</ul>
+			</div>
+		<div class="ezcs-loader"></div>
+		<div class="ezcs-clear"></div>
+		<div class="ezcs-controls-wrapper">
+			<span id="ezcs-control-switch-show" class="ezcs-control-switch" title="Hide controls"></span>
+			<span id="ezcs-control-switch-hide" class="ezcs-control-switch" title="Show controls" style="display:none"></span>
+			<div class="ezcs-controls-switch-wrapper"> <!-- these elements will toggle as a group when the switch control is clicked -->
+			<span id="ezcs-control-thumbs-show" class="ezcs-control-thumbs" title="Hide thumbnail carousel"></span>
+			<span id="ezcs-control-thumbs-hide" class=" ezcs-control-thumbs" title="Show thumbnail carousel"  style="display:none"></span>
+			<span id="ezcs-control-caption-show" class="ezcs-control-caption" title="Hide captions"></span>
+			<span id="ezcs-control-caption-hide" class="ezcs-control-caption" title="Show captions" style="display:none"></span>
+			<span id="ezcs-control-share-show" class="ezcs-control-share" title="Hide share options"></span>
+			<span id="ezcs-control-share-hide" class="ezcs-control-share" title="Show share options" style="display:none"></span>
+			<span id="ezcs-control-display-full" class="ezcs-control-display" title="Return to Normal" style="display:none"></span>
+			<span id="ezcs-control-display-small" class="ezcs-control-display" title="Expand to fullscreen"></span>
+			<span id="ezcs-control-play-play" class="ezcs-control-play" title="Pause" style="display:none"></span>
+			<span id="ezcs-control-play-pause" class="ezcs-control-play" title="Play"></span>	
+			</div>	
+		</div>
+
+	</div> <!-- close the main div -->
+
+	<!-- Carousel  -->
+			<div class="ezcs-carousel-wrapper">
+				<span class="ezcs-carousel-group-prev" title="Previous page"></span>
+				<span class="ezcs-carousel-group-next" title="Next page"></span>
+				<div class="ezcs-carousel-pages-wrapper">
+					<ul class="ezcs-paging-list">
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-1-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 1 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-2-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 2 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-3-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 3 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-4-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 4 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-5-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 5 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-6-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 6 thumb" /></li>
+						<li><img src="slides/ezwebdevtools-ezcontent-slider-funpixplus-7-thumb.jpg" alt="ezWebDevTools - ezContentSlider - FunPixPlus - Img 7 thumb" /></li>
+					</ul>
+				</div>
+			</div><!-- End: Carousel -->
+		</div> <!-- End: ez-content-slider-1-->
+			<!----------------------------------- DEMO 2 - END ----------------------------------->			
+			
+			<div class="clearfix"></div>
+			<div id="how-to"></div>			
+		</div> 
+		
+	 </div>
+	 
+	<!-- ================== #HOW-TO ================== -->	 
+	 
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-gears"></i> How To</h2>
+				
+				<p class="lead">
+					Standard jQuery setup. Please do a View Source of this page to see the markup requirements.
+				</p>
+						
+				<p>
+					Put this before the close body tag.
+				</p>
+				
+				<div class="col-lg-12 ezpl-margin-top-30">
+					<div class="well well-lg">
+					
+						<h4><i class="fa fa-code"></i> Code Snippet</h4>	
+						
+						<pre>
+<code class="html">&lt;script type="text/javascript"&gt;
+							$(document).ready(function() {	
+							&nbsp; $('#demo').ezContentSlider({
+							&nbsp;&nbsp;&nbsp;	demoVarFoo : 'foo',
+							&nbsp;&nbsp;&nbsp;	demoVarBar : 'bar',
+							&nbsp; });	
+							});
+							&lt;/script&gt;</code></pre>
+					</div>
+				
+					<p class="lead"><i class="fa fa-gear"></i> Option : Default</p>
+					
+					<ul class="li-line-space-1em">
+				
+						<li>
+						  <p><strong>startIndex : 0</strong>
+						  <br>Integer - What slide should we start with.</p>
+						  <p>Note: The index of the first slide is 0 not 1.</p>
+						</li>
+				
+						<li>
+						  <p><strong>loaderSelector : '.ezcs-loader'</strong>  
+						  <br>String - Selector (class) of the div that holds the spinner / loading .gif.</p>
+						  <p>Note: If you don't like the one provided, feel free to do your own.</p>
+						</li> 
+						
+						<li>
+						  <p><strong>controlsSwitchWrapperClass : '.ezcs-controls-switch-wrapper'</strong>
+						  <br>String - Selector (class) of div that wraps all the control bar's icons (except the switch control). This div is toggled by the switch click.</p>
+
+						</li>
+
+						<li>
+						  <p><strong>controlsSwitchFadeDuration : 200</strong>  
+						  <br>Integer - Fancy a fade on the switch toggle. This is the value for the duration.</p>
+						</li>
+
+						<li>
+						  <p><strong>controlsSwitchClass : '.ezcs-control-switch',</strong>
+						  <br>String - Selector (class) of the control bar's switch.</p>
+						</li>
+						
+						<li>
+						  <p><strong>controlsThumbsClass : '.ezcs-control-thumbs'</strong>  
+						  <br>String - Selector (class) of the control bar's thumbs  (i.e., show() / hide() carousel).</p>
+						</li> 
+
+						<li>
+						  <p><strong>controlsCaptionClass : '.ezcs-control-caption'</strong>
+						  <br>String -Selector (class) of the control bar's caption  (i.e., show() / hide() caption).</p>
+						</li>
+						
+						<li>
+						  <p><strong>controlsShareClass : '.ezcs-control-share'</strong>  
+						  <br>String - Selector (class) of the control bar's share (i.e., show() / hide() share icons).</p>
+						</li>	
+
+						<li>
+						  <p><strong>controlsDisplayClass : '.ezcs-control-display'</strong>  
+						  <br>String - Selector (class) of the control bar's display (i.e., full-screen toggle).</p>
+						</li> 
+
+						<li>
+						  <p><strong>controlsPlayClass : '.ezcs-control-play'</strong>
+						  <br>String - Selector (class) of the control bar's play (i.e., play / pause).</p>
+						</li>
+
+						<li>
+						  <p><strong>carouselUse : true</strong>  
+						  <br>Bool - On init, setup the carousel. true, else any other value will be considered false.</p>
+						   <p>Note: You must be explicit about wanting the carousel. The plugin tends not to assume anything.</p>
+						</li>
+
+						<li>
+						  <p><strong>carouselPageSelectedClassName : 'ezcs-selected'</strong>
+						  <br>String - Name of the class used to identify the current carousel slide.</p>
+						  <p>Note: This setting is simply the class name, the leading period (.) should not be included.</p>
+						</li>
+						
+						<li>
+						  <p><strong>carouselWrapperSelector : '.ezcs-carousel-wrapper'</strong>  
+						  <br>String - Selector (class) of the div that wraps the whole carousel.</p>
+						</li> 
+
+						<li>
+						  <p><strong>carouselPagesWrapperSelector : '.ezcs-carousel-pages-wrapper'</strong>
+						  <br>String - Selector (class) of the div that wraps the thumbnails within the carousel.</p>
+						</li>
+						
+						<li>
+						  <p><strong>carouselGroupNextSelector : '.ezcs-carousel-group-next'</strong>  
+						  <br>String - Selector (class) of the div for paging to the next group of thumbnails.</p>
+						</li>	
+
+						<li>
+						  <p><strong>carouselGroupPrevSelector : '.ezcs-carousel-group-prev'</strong>  
+						  <br>String - Selector (class) of the div for paging to the previous group of thumbnails.</p>
+						</li>
+
+						<li>
+						  <p><strong>carouselGroupPageOverlap : 0</strong>
+						  <br>Integer - How many thumbnails (aka pages) from the current group being displayed will be "overlapped" into the next / prev group to be diaplayed.</p>
+						  <p>Note: The intention of overlapping is to make it easier for users to follow the group paging. 
+						</li>
+
+						<li>
+						  <p><strong>carouselGroupPagingEffect : 'slide'</strong>  
+						  <br>String - Or 'fade'. Any value other than 'fade' will default to 'slide'.</p>
+						</li> 
+
+						<li>
+						  <p><strong>carouselGroupPagingDuration : 250</strong>
+						  <br>Integer - The duration of the .fadeOut() / .fadeIn() when paging from one group to the next.</p>
+						</li>
+			
+						<li>
+						  <p><strong>carouselSlideEasing : 'swing'</strong>  
+						  <br>String - If carouselGroupPagingEffect : 'slide' then use this easing value (else this value gets ignored). Use 'swing' else any other value defaults to 'linear'.</p>
+						</li>	
+						
+						<li>
+						  <p><strong>carouselPageWidthInt : 68</strong>  
+						  <br>Integer - To save a bit of effort / overhead, the plugin doesn't calculate the width of the thumbnail. You need to set the total (of img width + borders + margins + paddings) here. </p>
+						  <p>Note: Just the integer (without the px).</p>
+						</li> 
+
+						<li>
+						  <p><strong>carouselPageClickStopsPlayAuto : true</strong>
+						  <br>Bool - A click on any thumbnail (aka page) in the carousel will stop the auto-play.</p>
+						</li>
+				
+						<li>
+						  <p><strong>mainNextSelector : '.ezcs-main-next'</strong>  
+						  <br>String - Selector (class) of the div (positioned over the main slide) for moving to the next slide.</p>
+						</li>
+
+						<li>
+						  <p><strong>mainPrevSelector : '.ezcs-main-prev'</strong>
+						  <br>String - Selector (class) of the div (positioned over the main slide) for moving to the previous slide.</p>
+						</li>
+					
+						<li>
+						  <p><strong>mainNextPrevClickStopsPlayAuto : true</strong>  
+						  <br>Bool - A click on the main next / main prev will stop the auto-play.</p>
+						</li> 
+
+						<li>
+						  <p><strong>mainFullImgRatioDataAttr : 'ezscfullimgratio'</strong>
+						  <br>String - Used to create a data attribute used by the plugin.</p>
+						  <p>Note: 'data-' will be prefixed to this string to create a data attr.</p>
+						</li>
+						
+						<li>
+						  <p><strong>mainFullImgWidthDataAttr : 'ezscfullimgwidth'</strong>
+						  <br>String - Used to create a data attribute used by the plugin.</p>
+						  <p>Note: 'data-' will be prefixed to this string to create a data attr.</p>
+						</li>
+						
+						<li>
+						  <p><strong>mainFullImgHeightDataAttr : 'ezscfullimgheight'</strong>
+						  <br>String - Used to create a data attribute used by the plugin.</p>
+						  <p>Note: 'data-' will be prefixed to this string to create a data attr.</p>
+						</li>
+						
+						<li>
+						  <p><strong>mainFullImgSrcDataAttr : 'ezscfullimgsrc'</strong>
+						  <br>String - Used to create a data attribute used by the plugin.</p>
+						  <p>Note: 'data-' will be prefixed to this string to create a data attr.</p>
+						</li>
+						
+						<li>
+						  <p><strong>mainFullImgReadyDataAttr : 'ezscfullimgready'</strong>
+						  <br>String - Used to create a data attribute used by the plugin.</p>
+						  <p>Note: 'data-' will be prefixed to this string to create a data attr.</p>
+						</li>
+
+						<li>
+						  <p><strong>mainFullImgLazyLoad : true</strong>
+						  <br>Bool  - When set to true the plugin will do the following when toggling to full-screen: Initially use the normal image, stretch it to full-screen; then "lazy load" the full-screen image; once that's loaded replace the normal sized image with the full-screen image.</p>
+						  <p>Note: Using false could have a nasty negative impact on page size / load time.</p>
+						</li>
+
+						<li>
+						  <p><strong>slidesMainSelector : '.ezcs-main-slides'</strong>
+						  <br>String - Selector (class) of the div that wraps just the images within a given (single) slide.</p>
+						  <p>Note: Use is TBD. That is, the plugin does not use this option at the moment.</p>
+						</li>
+
+						<li>
+						  <p><strong>slidesMainEffect : 'slide'</strong>
+						  <br>String - Also 'fade', else any other value defaults to 'slide'.</p>
+						  <p>Note: slidesMainEffect does not necessarily have to match the carousel.</p>
+						</li>
+
+						<li>
+						  <p><strong>slidesMainFadeOutDuration : 300</strong>
+						  <br>Integer - If slidesMainEffect : 'fade' then this is the duration of the fadeOut().</p>
+						</li>
+
+						<li>
+						  <p><strong>slidesMainFadeInDuration : 300</strong>
+						  <br>Integer - If slidesMainEffect : 'fade' then this is the duration of the fadeIn().</p>
+						</li>
+					
+						<li>
+						  <p><strong>slidesPerSlideDuration : 200</strong>
+						  <br>Integer - If slidesMainEffect : 'slide', what "speed" is the slide transition.</p>
+						  <p>Note: This value should not be greater than playAutoDuration, and as such there's no code to check this. It's on you.</p>
+						</li>
+
+						<li>
+						  <p><strong>slidesPerSlideEasing : 'swing'</strong>
+						  <br>String - If slidesMainEffect : 'slide' then use this easing value. Use 'swing' else any other value defaults to 'linear'.</p>
+						</li>
+
+						<li>
+						  <p><strong>captionRegClass : '.ezcs-caption-reg'</strong>
+						  <br>String - Selector (class) of the span (or div, if you want) that wraps the caption for the regular (i.e., non full-screen) sized slide.</p>
+						</li>
+
+						<li>
+						  <p><strong>captionFullClass : '.ezcs-caption-full'</strong>
+						  <br>String - Selector (class) of the span (or div, if you want) that wraps the caption for the full-screen sized slide.</p>
+						</li>
+						
+						<li>
+						  <p><strong>captionIsShow : true</strong>
+						  <br>Bool - Are we going to use the captions.</p>
+						  <p>Note: If false then it's up to you to sort out the markup. That is, remove the tool bar control or flip-flop the display:none.</p>
+						</li>
+						
+						<li>
+						  <p><strong>shareRegClass : '.ezcs-share-reg'</strong>
+						  <br>String - Selector (class) of the span (or div, if you want) that wraps the share icons / links for the regular (i.e., non full-screen) sized slide.</p>
+						</li>
+
+						<li>
+						  <p><strong>shareFullClass : '.ezcs-share-full'</strong>
+						  <br>String - Selector (class) of the span (or div, if you want) that wraps the share icons / links for the full-screen sized slide.</p>
+						</li>
+
+						<li>
+						  <p><strong>shareIsShow : true</strong>
+						  <br>Bool - Are we going to use share.</p>
+						  <p>Note: If false then it's up to you to sort out the markup. That is, remove the tool bar control or flip-flop the display:none.</p>
+						</li>
+
+						<li>
+						  <p><strong>displayRegClass : '.ezcs-display-reg'</strong>
+						  <br>String - Selector (class) for the regular (i.e., non full-screen) elements. It's used when toggling between regular and full.</p>
+						</li>
+						
+						<li>
+						  <p><strong>displayFullClass : '.ezcs-display-full'</strong>
+						  <br>String - Selector (class) for the regular (i.e., non full-screen) elements. It's used when toggling between regular and full.</p>
+						</li>
+
+						<li>
+						  <p><strong>displayFullCloseWithEscape : true</strong>
+						  <br>Bool - When in full-screen hitting the escape key will close the full-screen and toggel back to regular.</p>
+						</li>
+
+						<li>
+						  <p><strong>displayFullStyle : 'fill'</strong>
+						  <br>String - How should the full-screen image be enlarged / resized. Use 'fit' else any other value defaults to 'fill'</p>
+						  <p>Note: 'fit' will not oversize the image to fill the screen. That is, the aspect ratio will be respected such that that whole image will be displayed.</p>
+						</li>
+
+						<li>
+						  <p><strong>displayFullFillCenterImg : true</strong>
+						  <br>Bool - Center the full-screen image based on window size and image size.</p>
+						</li>
+
+						<li>
+						  <p><strong>displayFullImgWidth100PercentClassName : 'ezcs-width-100-percent'</strong>
+						  <br>String - Value of the addClass() added.</p>
+						  <p>Note: This setting is simply the class name, the leading period (.) should not be included.</p>
+						</li>
+						
+						<li>
+						  <p><strong>displayFullImgHeight100PercentClassName : 'ezcs-height-100-percent'</strong>
+						  <br>String - Value of the addClass() added.</p>
+						  <p>Note: This setting is simply the class name, the leading period (.) should not be included.</p>
+						</li>
+
+						<li>
+						  <p><strong>fullToThisAddClassName : 'ezcs-status-fullscreen'</strong>
+						  <br>String - Value of the addClass() added to the overall wrapped when toggling to full-screen.</p>
+						  <p>Note: This setting is simply the class name, the leading period (.) should not be included.</p>
+						</li>
+						
+						<li>
+						  <p><strong>displayIsReg : true</strong>
+						  <br>Bool - true means start in regular mode, else false means full-screen.</p>
+						  <p>Note: if you have muliple sliders on a page and want full-screen (i.e., false), use this options for only one of the sliders. Starting multiple 
+						  sliders in full-screen really doesn't make sense.</p>
+						</li>
+
+						<li>
+						  <p><strong>playAutoPlaying: false</strong>
+						  <br>Bool - If true the slide show will automatically start playing once everything is loaded, setup, etc.</p>
+						</li>
+						
+						<li>
+						  <p><strong>playAutoDuration : 2000</strong>
+						  <br>Integer - Duration of each slide when playAutoPlaying: true.</p>
+						  <p>Note: If slidesMainEffect : 'fade' then this value should be greater than slidesMainFadeOutDuration + slidesMainFadeInDuration.</p>
+						</li>	
+						
+						<li>
+						  <p><strong>playContinuous : true</strong>
+						  <br>Bool - What happens once the last slide is auto played. true = when you get to the end, loop back to the start again (i.e., endless loop). false = stop at the end (i.e., play once).</p>
+						</li>						
+					</ul>
+				</div>			
+			</div>
+		
+			<!-- ================== Support ================== -->
+			<div class="col-lg-10 col-lg-offset-1 ezpl-margin-top-30">
+				<div class="well well-lg">
+					<h4><i class="fa fa-wrench fa-fw"></i> Support</h4>
+						<p>
+							ezContentSlider uses GitHub for support / issue tracking:
+						</p>
+						<p>
+						<a href="http://autd.co/P6NiL" target="_blank">https://github.com/ezWebDevTools/ezContentSlider/issues <i class="fa fa-external-link-square fa-fw"></i></a>
+						</p>
+				</div>
+			</div>
+		
+			<div class="clearfix"></div>
+			<div id="change-log"></div>
+			
+		</div>
+	
+	<!-- ================== #CHANGE-LOG ================== -->
+	
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+		
+				<h2><i class="fa fa-code-fork"></i> Change Log</h2>
+			
+				<p class="lead">Section includes Known Bugs, Noteworthy TODOs, and Roadmap.</p>
+			
+				<ul>
+				
+				<li><strong>v0.5.9 - 27 July 2014</strong>
+						<ul>
+						<li>FIXED: Adding lazy load changed how ezContentSlider needed to "think".</li>
+						</ul>
+					</li>
+			
+					<li><strong>v0.5.8 - 11 July 2014</strong>
+						<ul>
+						<li>FIXED: Carousel was getting mucked up by too many clicks too often.</li>
+						<li>FIXED: Mopped up a dingleberry with full-screen and Chrome (PC).</li>
+						</ul>
+					</li>
+					
+					<li><strong>v0.5.7 - 10 July 2014</strong>
+						<ul>
+							<li>ADDED: "Lazy load" option for full-screen images.</li>
+						</ul>
+					</li>
+
+					<li><strong>v0.5.6 - 9 July 2014</strong>
+						<ul>
+							<li>FIXED: Make sure the selector is present on the current page. Don't try to setup the slider if there's no selector to set it up on. #Duh.</li>
+						</ul>
+					</li>
+
+					<li><strong>v0.5.5 - 9 Oct 2012</strong>
+						<ul>
+							<li>FIXED: One of the calls to function ezcsPlayAuto() passed an extra parm which (needless to say) mucked things up.</li>
+						</ul>
+					</li>
+					
+					<li><strong>v0.5.4 - 18 Sept 2012</strong>
+						<ul>
+							<li>FIXED: ezcsIsBusy - main next / prev clicks are ignored until transition fadeIn (or slide over) is completed.</li>
+							<li>CHANGED: Did a load of variable renaming (read: shortened them) to try to make the overall file size smaller. Yes, they're still
+							long but that's the price for making it so easy to read. </li>
+						</ul>
+					</li>
+					
+					<li><strong>v0.5.3 - 17 Sept 2012</strong>
+						<ul>
+							<li>ADDED: Escape key closes full-screen.</li>
+							<li>ADDED: Main image next / prev keeps carousel in sync.</li>
+						</ul>
+					</li>
+
+					<li><strong>v0.5.2 - 13 Sept 2012</strong>
+						<ul>
+							<li>ADDED: var oEzcs - Single object makes it easier to pass a collection of vars that were previously "global".</li>
+							<li>CHANGED: Adding oEzcs resulted in clean up of orphaned code and vars.</li>
+							<li>ADDED: Support for multiple ezContentSliders per page.</li>
+							<li>ADDED Option / default carouselPageClickStopsPlayAuto - true / false.</li>
+							<li>ADDED Option / default mainNextPrevClickStopsPlayAuto - true / false.</li>
+							<li>ADDED Option / default displayFullStyle : 'fill' / 'fit' else any other value defaults to 'fill'.</li>
+							<li>ADDED Option / default displayFullFillCenterImg : true / false will resize full image from upper left corner (i.e., no centering).</li>
+							<li>CHANGED: A couple other settings, but nothing that effects functionality (per se).</li>
+						</ul>
+					</li>
+					
+					<li><strong>v0.5.1 - 10 July 2012</strong>
+						<ul>
+							<li>ADDED: Tool bar support of social media share button (show / hide).</li>
+						</ul>
+					</li>
+					
+					<li><strong>v0.5.0 - 10 July 2012</strong>
+						<ul>
+							<li>Happy birthday ezContentSlider.</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="col-lg-10 col-lg-offset-1 ezpl-margin-top-30">
+			
+				<!-- ================== Bugs ================== -->
+				<div class="well well-lg">
+					<h4><i class="fa fa-bug fa-fw"></i> Known Bugs</h4>
+					
+					<ul>
+						<li>v0.5.8 - No known bugs.</li>
+					</ul>
+				</div>
+			
+				<!-- ================== #TODOs ================== -->
+				<div class="well well-lg">	
+					<h4><i class="fa fa-list-ol fa-fw"></i> TODOs</h4>
+					
+					<ul>
+						<li>Refactor for speed / efficiency.</li>
+						<li>Make it easily work with other types of content (e.g., video embeds) and not just images. It's close but has not yet been fully tested for non-images.</li>
+						<li>Follow up on the lazy load enhancment(s) and make sure nothing else pops out somewhere.</li>
+					</ul>
+				</div>
+				
+				<!-- ================== #Roadmap ================== -->
+				<div class="well well-lg">	
+					<h4><i class="fa fa-road fa-fw"></i> Roadmap</h4>
+					
+					<ul>
+						<li>Revist and rethink the whole lot. Building ezContentSlider was part self-educational, and part not being able to find a slider I was comfortable
+						enough with to commit to. Over time (i.e., two years+) things change, skills grow and develop, etc.</li>
+					</ul>
+				</div>
+				
+			</div>
+			
+			<div class="clearfix"></div>
+			<div id="faq"></div>
+		</div>
+
+		
+		<!-- ================== #FAQ ================== -->
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-question-circle"></i> FAQ</h2>
+				
+				<p class="lead">Frequently Asked Questions.</p>
+			
+				<ol>
+					<li><p><strong>TBD?</strong></p>
+						<p>
+						Aenean non lorem consectetur...
+						</p>
+					</li>
+					
+				</ol>
+			
+			</div>
+			
+			<div class="clearfix"></div>
+			<div id="license"></div>
+		</div>
+	
+	
+		<!-- ================== #LICENSE ================== -->
+	
+		<!-- ===== http://opensource.org/ ===== -->
+
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-gavel"></i> License</h2>
+				
+				<p class="lead">The MIT License (MIT)</p>
+			
+				<p class="lead">Copyright (c) 2014 Alchemy United</p>
+
+				<p>
+				  Permission is hereby granted, free of charge, to any person obtaining a copy
+				  of this software and associated documentation files (the "Software"), to deal
+				  in the Software without restriction, including without limitation the rights
+				  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+				  copies of the Software, and to permit persons to whom the Software is
+				  furnished to do so, subject to the following conditions:
+				</p>
+
+				<p>
+				  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+				</p>
+
+				<p>
+					THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+					IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+					FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+					AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+					LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+					OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+					THE SOFTWARE.
+				</p>
+							
+			</div>
+
+			<div class="clearfix"></div>
+			<div id="credits"></div>
+		</div>
+
+   	
+		<!-- ================== #CREDITS ================== -->
+		<div class="row ezpl-row">		
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-thumbs-o-up"></i> Credits</h2>
+				
+				<p class="lead">Giving credit and love where due.</p>
+			
+				<ul>
+				  <li>Thanks FunPixPlus (<a href="http://autd.co/cR1zk" target="_blank">http://FunPixPlus.com <i class="fa fa-external-link-square"></i></a>) for the images.</li>
+				  
+				  <li>Thanks Bootstrap 3 (<a href="http://autd.co/tCWuL" target="_blank">http://GetBootstrap.com <i class="fa fa-external-link-square"></i></a>).</li>
+				  
+				  <li>Thanks Font Awesome (<a href="http://autd.co/3ke7a" target="_blank">http://FontAwesome.io <i class="fa fa-external-link-square"></i></a>).</li>
+				</ul>
+			
+			</div>
+			
+			<div class="clearfix"></div>
+			<div id="testimonials"></div>
+		</div>
+
+	
+		<!-- ================== #TESTIMONIALS ================== -->
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-heart"></i> Testimonials</h2>
+			
+				<p class="lead">These people have spoken.</p>
+				
+				<!-- ================== Quote ================== -->
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="well well-lg">
+						<p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+						Nullam sed elit at augue suscipit lacinia. Phasellus ultrices placerat pellentesque. 
+						Aenean ornare, sapien in tristique sollicitudin, massa lacus auctor dolor, et venenatis purus nisl et dui. <i class="fa fa-quote-right"></i></p>
+						<p class="col-lg-offset-6">&mdash; Laoreet Accumsan</p>
+						<div class="clearfix"></div>
+						
+					</div>
+				</div>
+			
+				<!-- ================== Quote ================== -->
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="well well-lg">
+						<p><i class="fa fa-quote-left"></i>  Pellentesque blandit ante nunc, in tincidunt augue porttitor imperdiet. 
+						Suspendisse pulvinar ultrices felis, ac luctus mauris tempor ac. <i class="fa fa-quote-right"></i></p>
+						<p class="col-lg-offset-6">&mdash; Sodales Dignissim</p>
+						<div class="clearfix"></div>
+					
+					</div>
+				</div>
+			</div>
+			
+			<div class="clearfix"></div>
+			<div id="share"></div>
+		</div>
+	
+	
+		<!-- ================== #Share ================== -->
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-share-alt"></i> Share</h2>
+			
+				<p class="lead">Be a good sport and show the world your love for ezContentSlider.</p>
+			
+				<div class="text-center">
+					<h1>
+					<a href="http://twitter.com/share?url=http://autd.co/MFIM3&amp&text=ezContentSlider - A jQuery Plugin" target="_blank"><i class="fa fa-twitter-square"></i></a>
+					
+					<a href="http://www.facebook.com/sharer.php?u=http://autd.co/PL4JA&t=ezContentSlider - A jQuery Plugin" target="_blank"><i class="fa fa-facebook-square"></i></a>
+					
+					<a href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://autd.co/PXBja&title=ezContentSlider - A jQuery Plugin" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+					
+					<a href="http://www.linkedin.com/shareArticle?mini=true&amp&url=http://autd.co/AELtt&title=ezContentSlider&summary=A jQuery Plugin" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+					
+					<a href="http://pinterest.com/pin/create/button/?url=http://autd.co/EXMZ7&media=http://ezwebdevtools.github.io/ezcontentslider/img/ezcontentslider-jquery-plugin.jpg" target="_blank"><i class="fa fa-pinterest-square"></i></a>
+					</h1>
+				</div>
+
+			</div>
+			
+			<div class="clearfix"></div>
+			<div id="additional-info"></div>
+		</div>
+	
+	
+		<!-- ================== #ADDITIONAL INFO ================== -->
+		<div class="row ezpl-row">
+			<div class="col-lg-12">
+			
+				<h2><i class="fa fa-info-circle"></i> Additional Info</h2>
+				
+				<p class="lead">Also known as: None of the Above.</p>
+				
+					<ul>
+						<li>When tweeting please use: #ezContentSlider, as well as @ezWebDevTools, @ChiefAlchemist1 and/or @AlchemyUnited.</li>
+						
+						<li>You might also be interested in the Bootstrap prototyping tool Pingendo (<a href="http://autd.co/2fMsX" target="_blank">http://www.pingendo.com <i class="fa fa-external-link-square"></i></a>)</li>
+					</ul>	
+			</div>
+		</div>
+	
+
+		<!-- ================== #Call to GitHub Action ================== -->
+		<div class="row ezpl-row-button">
+			<div class="col-lg-12 text-center">
+			
+				<a class="btn btn-lg btn-black" target="_blank" href="http://autd.co/YgZd4">
+					<i class="fa fa-github"></i> Get ezContentSlider on GitHub
+				</a>
+
+			</div>
+		</div>	
+	
+	</div> <!-- /container -->
+	
+	
+	<!-- ================== #FOOTER ================== -->
+	<div class="footer">
+		<div class="container">
+			<div class="row ezpl-row ezpl-footer">
+				<div class="col-lg-12">
+					<a href="http://autd.co/GJZqi" target="_blank" class="pull-left" title="Visit AlchemyUnited.com">&copy; Alchemy United 2014 <i class="fa fa-external-link-square"></i></a>
+					<a href="http://autd.co/EIbKv" target="_blank" title="ezWebDevTools on Facebook" class="pull-right">ezWebDevTools <i class="fa fa-external-link-square"></i></a>
+				</div>
+			
+				<div class="clearfix"></div>
+		
+				<div id="ez-logo" class="col-lg-12">
+				
+					<!-- [TODO] - Your logo here -->
+					<div  id="ez-logo-wrap">
+						<div id="ez-logo-background-circle">
+						</div>
+						
+						<div id="ez-logo-img">
+							<a href="http://autd.co/XXe5Q" target="_blank" title="ezWebDevTools.com"><img src="img/ez-logo.png" alt="ezWebDevTools.com"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<!-- ================== #Back to Top ================== -->
+			<div class="row ezpl-footer text-center">
+				<a href="#top" class="ezpl-back-to-top" title="Back to Top"><i class="fa fa-arrow-circle-up"></i></a>
+			</div>
+		
+			<!-- ================== #Call to Mailing List Action ================== -->
+			<div class="row ezpl-footer-button">
+				<div class="col-lg-12 text-center">
+			
+					<a class="btn btn-lg btn-black" href="http://autd.co/XgE6F" target="_blank">
+						<i class="fa fa-envelope"></i> Alchemy United Mailing List - Join Now
+					</a>
+
+				</div>
+			</div>	
+		</div>
+	</div>
+	
+	<!-- ================== THE SCRIPTS AND SUCH ================== -->
+	
+	<!-- ================== JQuery via CDN ================== -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	
+	<!-- jquery ui
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	-->
+
+	<!-- ================== For: the Bootstrap stuff within this demo ================== -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.carousel').carousel({
+				interval: 9000
+			});	
+			
+		});
+	</script>
+	
+	<!-- ================== For: ezContentSlider (and don't forget that you need jQuery ================== -->
+	<script src="js/jquery.ezContentSlider.min.js?v=059.0"></script> 
+	
+	<script type="text/javascript">
+	  $(document).ready(function() {
+	    $('#ez-content-slider-1').ezContentSlider({
+		  slidesMainEffect : 'fade'
+		});
+		
+		$('#ez-content-slider-2').ezContentSlider();
+	  }); 		
+	</script>
+	
+	<!-- ================== Google Analytics ================== -->
+	<script src="js/ga.js"></script>
+		
+</body>
+</html>
